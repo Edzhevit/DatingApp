@@ -1,0 +1,6 @@
+bin/
+obj/
+/packages/
+*.db
+/datingapp.db-shm
+/datingapp.db-wal

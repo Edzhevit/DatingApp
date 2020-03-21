@@ -1,8 +1,0 @@
-bin/
-obj/
-/packages/
-/.idea
-/DatingApp.API/datingapp.db
-*.db
-/DatingApp.API/datingapp.db-shm
-/DatingApp.API/datingapp.db-wal
