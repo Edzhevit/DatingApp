@@ -1,3 +1,4 @@
+// import {BrowserModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig} from '@angular/platform-browser';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {BsDropdownModule, TabsModule} from 'ngx-bootstrap';
@@ -23,6 +24,7 @@ import {AuthGuard} from './guards/auth.guard';
 import {UserService} from './services/user.service';
 import {MemberDetailResolver} from './resolvers/member-detail-resolver';
 import {MemberListResolver} from './resolvers/member-list-resolver';
+import {NgxGalleryModule} from 'ngx-gallery-9';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -47,6 +49,7 @@ export function tokenGetter() {
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    NgxGalleryModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -62,7 +65,7 @@ export function tokenGetter() {
     AuthGuard,
     UserService,
     MemberDetailResolver,
-    MemberListResolver
+    MemberListResolver,
   ],
   bootstrap: [
     AppComponent

@@ -21,12 +21,4 @@ export class MemberListComponent implements OnInit {
     })
   }
 
-  loadUsers() {
-    this.userService.getUsers().subscribe((users: User[]) => {
-      this.users = users;
-    }, error => {
-      this.alertifyService.error(error);
-    });
-  }
-
 }
