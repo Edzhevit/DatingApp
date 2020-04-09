@@ -28,6 +28,7 @@ import {AuthGuard} from './guards/auth.guard';
 import {MemberDetailResolver} from './resolvers/member-detail-resolver';
 import {MemberListResolver} from './resolvers/member-list-resolver';
 import {MemberEditResolver} from './resolvers/member-edit-resolver';
+import {PreventUnsavedChangesGuard} from './guards/prevent-unsaved-changes.guard';
 
 
 export function tokenGetter() {
@@ -71,7 +72,8 @@ export function tokenGetter() {
     UserService,
     MemberDetailResolver,
     MemberListResolver,
-    MemberEditResolver
+    MemberEditResolver,
+    PreventUnsavedChangesGuard
   ],
   bootstrap: [
     AppComponent
