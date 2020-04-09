@@ -18,7 +18,7 @@
       <span class="text-light pr-2">
         Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </span>
-      <a class="text-light pr-2" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+      <a class="text-light pr-2" [routerLink]="['/members/edit']" ]><i class="fa fa-user"></i>Edit Profile</a>
       <a id="logoutButton" class="text-light" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a>
     </div>
 
