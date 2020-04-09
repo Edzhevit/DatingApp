@@ -12,7 +12,7 @@ import {MemberEditResolver} from "./resolvers/member-edit-resolver";
 
 export const appRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'members', resolve: {users: MemberListResolver}, component: MemberListComponent, canActivate: [AuthGuard]},
+  {path: 'members', component: MemberListComponent, resolve: {users: MemberListResolver}, canActivate: [AuthGuard]},
   {path: 'members/:id', component: MemberDetailComponent, resolve: {user: MemberDetailResolver}, canActivate: [AuthGuard]},
   {path: 'members/edit', component: MemberEditComponent, resolve: {user: MemberEditResolver}, canActivate: [AuthGuard]},
   {path: 'messages', component: MessagesComponent, canActivate: [AuthGuard]},
