@@ -3,8 +3,8 @@ import {User} from '../../models/user';
 import {ActivatedRoute} from '@angular/router';
 import {AlertifyService} from '../../services/alertify.service';
 import {NgForm} from '@angular/forms';
-import {UserService} from "../../services/user.service";
-import {AuthService} from "../../services/auth.service";
+import {UserService} from '../../services/user.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-member-edit',
@@ -12,7 +12,7 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
-  @ViewChild('editForm', {static: true}) editForm: NgForm;
+  @ViewChild('editForm') editForm: NgForm;
   user: User;
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
