@@ -2,7 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Photo} from '../../models/photo';
 import {FileUploader} from 'ng2-file-upload';
 import {environment} from '../../../environments/environment';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from '../../services/auth.service';
+import {UserService} from '../../services/user.service';
+import {AlertifyService} from '../../services/alertify.service';
 
 @Component({
   selector: 'app-photo-editor',
@@ -16,7 +18,7 @@ export class PhotoEditorComponent implements OnInit {
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private userService: UserService, private alertifyService: AlertifyService) {
   }
 
   ngOnInit(): void {
@@ -53,4 +55,11 @@ export class PhotoEditorComponent implements OnInit {
     };
   }
 
+  setMainPhoto(photo: Photo) {
+    this.userService.setMainPhoto(this.authService.decodedToken.nameid, photo.id).subscribe(() => {
+      this.alertifyService.success('Successfully set to main');
+    }, error => {
+      this.alertifyService.error(error);
+    });
+  }
 }
