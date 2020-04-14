@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 import {JwtModule} from '@auth0/angular-jwt';
 import {FormsModule} from '@angular/forms';
 import {NgxGalleryModule} from 'ngx-gallery-9';
+import {FileUploadModule} from 'ng2-file-upload';
 
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
@@ -57,6 +58,7 @@ export function tokenGetter() {
     TabsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     NgxGalleryModule,
+    FileUploadModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
