@@ -15,6 +15,9 @@
     </ul>
 
     <div *ngIf="loggedIn()">
+      <span>
+        <img src="{{authService.currentUser.photoUrl}}">
+      </span>
       <span class="text-light pr-2">
         Welcome {{authService.decodedToken?.unique_name | titlecase}}
       </span>
