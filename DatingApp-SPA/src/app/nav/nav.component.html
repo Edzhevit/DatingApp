@@ -16,7 +16,7 @@
 
     <div *ngIf="loggedIn()">
       <span>
-        <img src="{{photoUrl}}" alt="">
+        <img src="{{photoUrl || '../../assets/original.png'}}" alt="">
       </span>
       <span class="text-light pr-2">
         Welcome {{authService.decodedToken?.unique_name | titlecase}}
