@@ -1,7 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {AlertifyService} from '../services/alertify.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {User} from '../models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +12,11 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
-  model: any = {};
+  user: User;
   registerForm: FormGroup;
 
-  constructor(private authService: AuthService, private alertifyService: AlertifyService, private formBuilder: FormBuilder) {
+  constructor(private authService: AuthService, private alertifyService: AlertifyService,
+              private formBuilder: FormBuilder, private router: Router) {
   }
 
   ngOnInit() {
@@ -39,11 +42,18 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.authService.register(this.model).subscribe(() => {
-      this.alertifyService.success('registration successful');
-    }, error => {
-      this.alertifyService.error(error);
-    });
+    if (this.registerForm.valid) {
+      this.user = Object.assign({}, this.registerForm.value);
+      this.authService.register(this.user).subscribe(() => {
+        this.alertifyService.success('Registration successful');
+      }, error => {
+        this.alertifyService.error(error);
+      }, () => {
+        this.authService.login(this.user).subscribe(() => {
+          this.router.navigate(['/members']);
+        });
+      });
+    }
   }
 
   cancel() {
