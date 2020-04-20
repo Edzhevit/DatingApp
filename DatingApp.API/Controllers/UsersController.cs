@@ -27,13 +27,15 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers(UserParams userParams)
         {
-            var users = await _datingRepository.GetUsers();
+            var users = await _datingRepository.GetUsers(userParams);
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
+            Response.AddPagination(users.CurrentPage, users.PageSize,
+                users.TotalCount, users.TotalPages);
             return Ok(usersToReturn);
         }
-        
+
         [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
@@ -41,7 +43,7 @@ namespace DatingApp.API.Controllers
             var userToReturn = _mapper.Map<UserForDetailedDto>(user);
             return Ok(userToReturn);
         }
-        
+
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
         {
@@ -49,12 +51,14 @@ namespace DatingApp.API.Controllers
             {
                 return Unauthorized();
             }
+
             var userFromRepo = await _datingRepository.GetUser(id);
             _mapper.Map(userForUpdateDto, userFromRepo);
             if (await _datingRepository.SaveAll())
             {
                 return NoContent();
             }
+
             throw new Exception($"Updating user {id} failed to save");
         }
     }
