@@ -23,16 +23,16 @@ export class UserService {
       params.append('pageNumber', page);
       params.append('pageSize', itemsPerPage);
     }
-    if (userParams != null){
+    if (userParams != null) {
       params = params.append('minAge', userParams.minAge);
       params = params.append('maxAge', userParams.maxAge);
       params = params.append('gender', userParams.gender);
       params = params.append('orderBy', userParams.orderBy);
     }
-    if (likeParams === 'Likers'){
+    if (likeParams === 'Likers') {
       params.append('likers', 'true');
     }
-    if (likeParams === 'Likees'){
+    if (likeParams === 'Likees') {
       params.append('likees', 'true');
     }
     return this.http.get<User[]>(this.baseUrl + 'users', {observe: 'response', params})
@@ -82,5 +82,9 @@ export class UserService {
 
         return paginatedResult;
       }))
+  }
+
+  getMessageThread(id: number, recipientId: number) {
+    return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId);
   }
 }
