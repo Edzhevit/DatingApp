@@ -1,3 +1,5 @@
 ﻿﻿# Default ignored files
 /.idea/
 /DatingApp.API/wwwroot/
+/DatingApp.API/appsettings.Development.json
+/DatingApp-SPA/src/environments/environment.prod.ts
