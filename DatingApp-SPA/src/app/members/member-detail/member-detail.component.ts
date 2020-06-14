@@ -4,7 +4,7 @@ import {UserService} from '../../services/user.service';
 import {AlertifyService} from '../../services/alertify.service';
 import {ActivatedRoute} from '@angular/router';
 import {NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions} from 'ngx-gallery-9';
-import {TabsetComponent} from 'ngx-bootstrap';
+import {TabsetComponent} from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-member-detail',
