@@ -77,7 +77,14 @@ namespace DatingApp.API
                         ValidateAudience = false
                     };
                 });
-            
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
+                opt.AddPolicy("ModeratePhotoRole", policy => policy.RequireRole("Admin", "Moderator"));
+                opt.AddPolicy("VipOnly", policy => policy.RequireRole("VIP"));
+            });
+                
             services.AddControllers(opt =>
             {
                 var policy = new AuthorizationPolicyBuilder()
