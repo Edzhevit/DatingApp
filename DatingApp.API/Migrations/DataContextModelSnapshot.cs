@@ -82,6 +82,9 @@ namespace DatingApp.API.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("IsMain")
                         .HasColumnType("INTEGER");
 
