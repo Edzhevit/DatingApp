@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../../models/user";
+import {User} from '../../models/user';
+import {AdminService} from '../../services/admin.service';
+import {AlertifyService} from '../../services/alertify.service';
 
 @Component({
   selector: 'app-user-management',
@@ -10,9 +12,19 @@ export class UserManagementComponent implements OnInit {
 
   users: User[];
 
-  constructor() { }
+  constructor(private adminService: AdminService,
+              private alertifyService: AlertifyService) { }
 
   ngOnInit(): void {
+    this.getUsersWithRoles();
+  }
+
+  getUsersWithRoles() {
+    this.adminService.getUsersWithRoles().subscribe((users: User[]) => {
+      this.users = users;
+    }, error => {
+      this.alertifyService.error(error);
+    })
   }
 
 }
