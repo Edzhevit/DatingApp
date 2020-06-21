@@ -22,6 +22,6 @@ export const appRoutes: Routes = [
     canActivate: [AuthGuard], canDeactivate: [PreventUnsavedChangesGuard]},
   {path: 'messages', component: MessagesComponent,  resolve: {users: MessagesResolver}, canActivate: [AuthGuard]},
   {path: 'lists', component: ListsComponent,  resolve: {users: ListsResolver}, canActivate: [AuthGuard]},
-  {path: 'admin', component: AdminPanelComponent, canActivate: [AuthGuard]},
+  {path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Moderator']}, canActivate: [AuthGuard]},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
