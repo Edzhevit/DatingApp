@@ -40,6 +40,8 @@ import { HasRoleDirective } from './directives/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import {AdminService} from './services/admin.service';
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import {ModalModule} from 'ngx-bootstrap/modal';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -62,7 +64,8 @@ export function tokenGetter() {
     AdminPanelComponent,
     HasRoleDirective,
     UserManagementComponent,
-    PhotoManagementComponent
+    PhotoManagementComponent,
+    RolesModalComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +75,7 @@ export function tokenGetter() {
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    ModalModule.forRoot(),
     NgxGalleryModule,
     FileUploadModule,
     JwtModule.forRoot({
@@ -95,6 +99,9 @@ export function tokenGetter() {
     ListsResolver,
     MessagesResolver,
     AdminService
+  ],
+  entryComponents: [
+    RolesModalComponent
   ],
   bootstrap: [
     AppComponent
