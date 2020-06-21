@@ -4,4 +4,5 @@
   description: string;
   dateAdded: Date;
   isMain: boolean;
+  isApproved: boolean;
 }
